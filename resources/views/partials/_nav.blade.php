@@ -54,7 +54,7 @@
                             <ul class="dropdown-menu">
                                 <li>
 
-                                    <a href="{{ url('/feed') }}">My Feeds</a>
+                                    <a href="{{ url('/feeds') }}">My Feeds</a>
                                     <a href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
