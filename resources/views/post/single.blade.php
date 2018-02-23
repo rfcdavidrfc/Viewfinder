@@ -11,7 +11,8 @@
 
             <h1>{{ $feed -> title }}</h1>
             <p>{{ $feed -> body }}</p>
-
+<hr>
+            <p>Posts In: {{ $feed->category->name }}</p>
         </div>
     </div>
 
