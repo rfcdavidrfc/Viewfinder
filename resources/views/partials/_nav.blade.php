@@ -55,6 +55,7 @@
                                 <li>
 
                                     <a href="{{ url('/feeds') }}">My Feeds</a>
+                                    <a href="{{ route('categories.index') }}">Categories</a>
                                     <a href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
