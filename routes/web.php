@@ -17,13 +17,9 @@ Route::get('feed/{slug}', ['as' => 'post.single', 'uses' => 'PostController@getS
 Route::get('post', ['uses' => 'PostController@getIndex', 'as' => 'post.index']);
 
 
-
 //Authentication Routes
-
-Route::get('auth/login', ['as' => 'login', 'uses' =>'Auth\LoginController@Login']);
-
+Route::get('auth/login', ['as' => 'login', 'uses' =>'Auth\LoginController@showLoginForm']);
 Route::post('auth/login', 'Auth\LoginController@login');
-
 Route::get('auth/logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
 
 //Route::get('/login', 'PagesController@getLogin');
@@ -33,6 +29,11 @@ Route::get('auth/logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@log
 Route::get('auth/register', 'Auth\RegisterController@showRegistrationForm');
 Route::post('auth/register', 'Auth\RegisterController@register');
 
+//Password Reset Routes
+Route::get('password/reset', ['as' => 'password/reset', 'uses' =>'Auth\ForgotPasswordController@showLinkRequestForm']);
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
+Route::get('password/reset/{token?}', 'Auth\ResetPasswordController@showResetForm');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 Route::get('/register', 'PagesController@getRegister');
 
