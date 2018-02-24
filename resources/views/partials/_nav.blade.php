@@ -27,7 +27,8 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/profile') }}">My Profile</a>
+                    {{--Jack Changed This--}}
+                    <a class="nav-link" href="{{ url('feeds/create') }}">My Profile</a>
                 </li>
 
                 <li>
