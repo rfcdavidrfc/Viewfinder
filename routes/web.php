@@ -40,7 +40,6 @@ Route::resource('categories', 'CategoryController', ['except' => ['create']]);
 
 Route::get('/register', 'PagesController@getRegister');
 
-Route::get('/profile', 'PagesController@getProfile');
 
 Route::get('/contact', 'PagesController@getContact');
 
