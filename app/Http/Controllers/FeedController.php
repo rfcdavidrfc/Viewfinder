@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Feed;
+use App\Category;
 use Session;
+
 
 class FeedController extends Controller
 {
@@ -32,7 +34,10 @@ class FeedController extends Controller
      */
     public function create()
     {
-        return view('feeds.create');
+        $categories = Category::all();
+
+//        Changed this Jack
+        return view('feeds.profile')->withCategories($categories);
     }
 
     /**
@@ -45,9 +50,10 @@ class FeedController extends Controller
     {
         //validate the data
         $this-> validate($request, array(
-            'title' => 'required|max:255',
-            'slug' => 'required|alpha_dash|min:5|max:255|unique:feeds,slug',
-            'body' => 'required'
+            'title'       => 'required|max:255',
+            'slug'        => 'required|alpha_dash|min:5|max:255|unique:feeds,slug',
+            'category_id' => 'required|integer',
+            'body'        => 'required'
     ));
 
         //store in the database
@@ -55,6 +61,7 @@ class FeedController extends Controller
 
         $feed -> title = $request -> title;
         $feed -> slug = $request -> slug;
+        $feed -> category_id = $request -> category_id;
         $feed -> body = $request -> body;
         $feed -> save();
 
@@ -84,7 +91,13 @@ class FeedController extends Controller
     public function edit($id)
     {
         $feed = Feed::find($id);
-        return view('feeds.edit') -> withFeed($feed);    }
+        $categories = Category::all();
+        $cats = array();
+        foreach($categories as $category){
+            $cats [$category->id] = $category->name;
+        }
+        return view('feeds.edit') -> withFeed($feed) -> withCategories($cats);
+    }
 
     /**
      * Update the specified resource in storage.
@@ -100,18 +113,21 @@ class FeedController extends Controller
 
             $this-> validate($request, array(
                 'title' => 'required|max:255',
+                'category_id' => 'required|integer',
                 'body' => 'required',
             ));
         }
         $this-> validate($request, array(
             'title' => 'required|max:255',
             'slug' => 'required|alpha_dash|min:5|max:255',
+            'category_id' => 'required|integer',
             'body' => 'required',
         ));
 
         $feed = Feed::find($id);
         $feed -> title = $request -> input ('title');
         $feed -> slug = $request -> input ('slug');
+        $feed -> category_id = $request -> input('category_id');
         $feed -> body = $request -> input('body');
 
         $feed -> save();
