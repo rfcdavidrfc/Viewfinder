@@ -24,10 +24,6 @@ class PagesController extends Controller {
         return view('pages.contact');
     }
 
-    public function getProfile() {
-        return view('feeds.profile');
-    }
-
     public function getLogin() {
         return view('auth.login');
     }
