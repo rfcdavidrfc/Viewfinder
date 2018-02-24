@@ -17,6 +17,11 @@
                 </dl>
 
                 <dl class="dl-horizontal">
+                    <label>Category:</label>
+                    <p>{{ $feed -> category -> name }}</p>
+                </dl>
+
+                <dl class="dl-horizontal">
                     <label>Created At:</label>
                     <p>{{date('j M, Y H:i', strtotime($feed->created_at))}}</p>
                 </dl>
