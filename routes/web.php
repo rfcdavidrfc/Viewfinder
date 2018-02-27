@@ -38,6 +38,9 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 //Categories
 Route::resource('categories', 'CategoryController', ['except' => ['create']]);
 
+//Tags
+Route::resource('tags', 'TagController', ['except' => ['create']]);
+
 Route::get('/register', 'PagesController@getRegister');
 
 
