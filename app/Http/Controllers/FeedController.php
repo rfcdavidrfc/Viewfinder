@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Feed;
+use App\Tag;
 use App\Category;
 use Session;
 
@@ -35,9 +36,10 @@ class FeedController extends Controller
     public function create()
     {
         $categories = Category::all();
+        $tags = Tag::all();
 
-//        Changed this Jack
-        return view('feeds.profile')->withCategories($categories);
+
+        return view('feeds.profile')->withCategories($categories)->withTags($tags);
     }
 
     /**
@@ -64,6 +66,8 @@ class FeedController extends Controller
         $feed -> category_id = $request -> category_id;
         $feed -> body = $request -> body;
         $feed -> save();
+
+        $feed -> tags() -> sync($request -> tags, false);
 
         Session::flash('success', 'The post was successfully save!');
         //redirect to another page.
@@ -96,7 +100,14 @@ class FeedController extends Controller
         foreach($categories as $category){
             $cats [$category->id] = $category->name;
         }
-        return view('feeds.edit') -> withFeed($feed) -> withCategories($cats);
+
+        $tags = Tag::all();
+        $tags2 = array();
+        foreach($tags as $tag){
+            $tags2 [$tag->id] = $tag->name;
+        }
+
+        return view('feeds.edit') -> withFeed($feed) -> withCategories($cats) -> withTags($tags2 );
     }
 
     /**
@@ -131,6 +142,8 @@ class FeedController extends Controller
         $feed -> body = $request -> input('body');
 
         $feed -> save();
+
+        $feed -> tags() -> sync($request -> tags);
 
         Session::flash('success', 'The post was successfully saved!');
         return redirect()->route('feeds.show', $feed->id);
