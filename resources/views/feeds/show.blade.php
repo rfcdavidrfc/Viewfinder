@@ -8,6 +8,13 @@
         <div class="col-md-8">
     <h1>{{ $feed->title }}</h1>
     <p class="lead">{{ $feed->body }}</p>
+            <hr>
+
+            <div class="tags">
+            @foreach($feed -> tags as $tag)
+<span class="label label-default">{{ $tag -> name }}</span>
+            @endforeach
+            </div>
     </div>
         <div class="col-md-4">
             <div class="well">
