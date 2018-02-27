@@ -6,7 +6,9 @@
 @section('stylesheets')
 
     {!! Html::style('css/parsley.css') !!}
-    <script src="//cloud.tinymce.com/stable/tinymce.min.js?apiKey=og5pkcy6qa2s1s9le5qzhtoer4jyxmf5nwkcthjdeijqd3do"></script>
+    {!! Html::style('css/select2.min.css') !!}
+
+    {{--<script src="//cloud.tinymce.com/stable/tinymce.min.js?apiKey=og5pkcy6qa2s1s9le5qzhtoer4jyxmf5nwkcthjdeijqd3do"></script>--}}
 
     <script>
         tinymce.init({
@@ -41,6 +43,16 @@
 
                 </select>
 
+                {{ Form::label('tags', 'Tags:') }}
+                <select class="form-control select2-multi" name="tags[]" multiple="multiple">
+                    @foreach($tags as $tag)
+                        <option value='{{ $tag->id }}'>{{ $tag->name }}</option>
+                    @endforeach
+
+                </select>
+
+
+
                 {{Form::label('body', 'Post Body:')}}
                 {{Form::textarea('body', null, array('class' => 'form-control', 'required' => ''))}}
 
@@ -56,5 +68,10 @@
 @section('scripts')
 
     {!! Html::script('js/parsley.min.js') !!}
+    {!! Html::script('js/select2.min.js') !!}
 
-@stop
+    <script type="text/javascript">
+        $('.select2-multi').select2();
+    </script>
+
+@endsection
