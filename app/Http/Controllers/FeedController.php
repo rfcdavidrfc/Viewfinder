@@ -143,7 +143,12 @@ class FeedController extends Controller
 
         $feed -> save();
 
-        $feed -> tags() -> sync($request -> tags);
+        if (isset($request->tags)){
+            $feed -> tags() -> sync($request -> tags);
+        }else{
+            $feed -> tags() -> sync(array());
+        }
+
 
         Session::flash('success', 'The post was successfully saved!');
         return redirect()->route('feeds.show', $feed->id);
