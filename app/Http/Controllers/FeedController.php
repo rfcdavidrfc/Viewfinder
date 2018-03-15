@@ -7,14 +7,15 @@ use App\Feed;
 use App\Tag;
 use App\Category;
 use Session;
+use Image;
+use Auth;
 
 
 class FeedController extends Controller
 {
 
-    public function _construct()
-    {
-        $this -> middleware('auth');
+    public function __construct(){
+        $this->middleware('auth');
     }
     /**
      * Display a listing of the resource.
@@ -23,6 +24,7 @@ class FeedController extends Controller
      */
     public function index()
     {
+        $userId = Auth::user()->id;
         $feeds = Feed::orderBy('id', 'desc') -> paginate(5);
 
         return view ('feeds.index') -> withFeeds($feeds);
@@ -55,7 +57,8 @@ class FeedController extends Controller
             'title'       => 'required|max:255',
             'slug'        => 'required|alpha_dash|min:5|max:255|unique:feeds,slug',
             'category_id' => 'required|integer',
-            'body'        => 'required'
+            'body'        => 'required',
+            'featured_image' => 'sometimes|image'
     ));
 
         //store in the database
@@ -65,6 +68,16 @@ class FeedController extends Controller
         $feed -> slug = $request -> slug;
         $feed -> category_id = $request -> category_id;
         $feed -> body = $request -> body;
+
+        if ($request->hasFile('featured_image')){
+            $image = $request->file('featured_image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('images/' .$filename);
+            Image::make($image)->resize(800, 400)->save($location);
+
+            $feed->image = $filename;
+        }
+
         $feed -> save();
 
         $feed -> tags() -> sync($request -> tags, false);
@@ -163,6 +176,7 @@ class FeedController extends Controller
     public function destroy($id)
     {
         $feed = Feed::find($id);
+        $feed -> tags() -> detach();
 
         $feed -> delete();
 
