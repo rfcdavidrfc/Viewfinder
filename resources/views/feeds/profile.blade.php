@@ -27,7 +27,7 @@
                 <h1>Create New Post</h1>
                 <hr>
 
-                {!! Form::open(array('route' => 'feeds.store', 'data-parsley-validate' => '')) !!}
+                {!! Form::open(array('route' => 'feeds.store', 'data-parsley-validate' => '', 'files' => 'true')) !!}
                 {{Form::label('title', 'Title:')}}
                 {{Form::text('title', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255'))}}
 
@@ -51,7 +51,8 @@
 
                 </select>
 
-
+                {{ Form::label('featured_image', 'Upload Image',['class' => 'form-spacing-top']) }}
+                {{ Form::file('featured_image') }}
 
                 {{Form::label('body', 'Post Body:')}}
                 {{Form::textarea('body', null, array('class' => 'form-control', 'required' => ''))}}
