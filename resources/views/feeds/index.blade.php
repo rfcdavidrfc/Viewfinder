@@ -12,7 +12,7 @@
 
         </div>
     <div class="col-md-2">
-        <a href="{{url('/profile') }}" class="btn btn-lg btn-block btn-primary btn-h1-spacing">Create New Post</a>
+        <a href="{{url('/feeds/create') }}" class="btn btn-lg btn-block btn-primary btn-h1-spacing">Create New Post</a>
      </div>
 
         <div class="col-md-12">
