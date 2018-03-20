@@ -5,7 +5,10 @@
 @section('content')
 
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-8" style="height: 500px">
+
+            <img src="{{ asset('images/'.$feed -> image) }}" display="block" height="100%" width="100%"/>
+
     <h1>{{ $feed->title }}</h1>
     <p class="lead">{{ $feed->body }}</p>
             <hr>
@@ -35,8 +38,10 @@
                         <td>{{ $comment -> email }}</td>
                         <td>{{ $comment -> comment }}</td>
                         <td>
+                            {{--@if (\Auth::id == $comment-> users.id)--}}
                             <a href="{{ route('comments.edit', $comment->id) }}" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
                             <a href="{{ route('comments.delete', $comment->id) }}" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
+                            {{--@endif--}}
                         </td>
                     </tr>
                     @endforeach

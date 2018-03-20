@@ -8,33 +8,24 @@
     {!! Html::style('css/parsley.css') !!}
     {!! Html::style('css/select2.min.css') !!}
 
-    {{--<script src="//cloud.tinymce.com/stable/tinymce.min.js?apiKey=og5pkcy6qa2s1s9le5qzhtoer4jyxmf5nwkcthjdeijqd3do"></script>--}}
-
-    <script>
-        tinymce.init({
-            selector: 'textarea',
-            plugins: 'link code',
-            menubar: 'false',
-        });
-    </script>
-
 @endsection
 
 @section('content')
     <div class = "container">
+
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <h1>Create New Post</h1>
+                <h1>Upload your photo</h1>
                 <hr>
 
                 {!! Form::open(array('route' => 'feeds.store', 'data-parsley-validate' => '', 'files' => 'true')) !!}
-                {{Form::label('title', 'Title:')}}
+                {{Form::label('title', 'Name:')}}
                 {{Form::text('title', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255'))}}
 
-                {{ Form::label('slug', 'Slug:') }}
-                {{ Form::text('slug', null, array('class' => 'form-control', 'required' => '', 'minlength' => '5', 'maxlength' => '255')) }}
+                {{--{{ Form::label('slug', 'Link:') }}--}}
+                {{--{{ Form::text('slug', null, array('class' => 'form-control', 'required' => '', 'minlength' => '5', 'maxlength' => '255')) }}--}}
 
-                {{ Form::label('category_id', 'Category:') }}
+                {{ Form::label('category_id', 'Album:') }}
                 <select class="form-control" name="category_id">
 
                     @foreach($categories as $category)
@@ -54,7 +45,7 @@
                 {{ Form::label('featured_image', 'Upload Image',['class' => 'form-spacing-top']) }}
                 {{ Form::file('featured_image') }}
 
-                {{Form::label('body', 'Post Body:')}}
+                {{Form::label('body', 'Description:' ,['class' => 'form-spacing-top'])}}
                 {{Form::textarea('body', null, array('class' => 'form-control', 'required' => ''))}}
 
                 {{Form::submit('Create Post', array ('class' => 'btn btn-success btn-lg btn-block', 'style' => 'margin-top: 20px;'))}}
@@ -74,5 +65,20 @@
     <script type="text/javascript">
         $('.select2-multi').select2();
     </script>
+
+    {{--<script>--}}
+        {{--/*Creating an Accordion*/--}}
+        {{--$(document).ready(function() {--}}
+            {{--$(".container").click(function() {--}}
+                {{--this.classList.toggle("active");--}}
+                {{--var row = this.nextElementSibling;--}}
+                {{--if (row.style.display === "block") {--}}
+                    {{--row.style.display = "none";--}}
+                {{--} else {--}}
+                    {{--row.style.display = "block";--}}
+                {{--}--}}
+            {{--});--}}
+        {{--});--}}
+    {{--</script>--}}
 
 @endsection

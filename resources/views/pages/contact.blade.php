@@ -1,28 +1,17 @@
 @extends('layouts.app')
+
+@section('title', '| Contact')
+
 @section('content')
-
-    <html>
-    <head>
-
-        <title>Contact Us</title>
-
-        <style>
-            html, body {
-
-        </style>
-    </head>
-    <body>
 
     <div class = "container">
         <div class="row">
             <div class="col-md-10">
                 <h1>Contact Us</h1>
                 <hr>
-                <p>jkasnfkanbsfkjasfkjbasljhfbakjbgkj`You'reTheBESTbflkjsdlfjhbsdk;fbljadnfljhbads;fblj;ndfljhbfjbsalkfj
-                    ihdfbjlfabljadbf;jbdlfkjbadsljhfbuhofbsajbflhbsdfjlhbdkfjbdlsjhbfk;abdf;lbfjabfljhbskfbsjfbkabf</p>
-                <hr>
 
-                <form>
+                <form action="{{ url('contact') }}" method="POST">
+                    {{ csrf_field()  }}
                     <div class="form-group">
                         <label name="email">Email:</label>
                         <input id="email" name="email" class="form-control">
@@ -35,17 +24,14 @@
 
                     <div class="form-group">
                         <label name="message">Message:</label>
-                        <textArea id="message" name="message" class="form-control">Type your message here...</textArea>
+                        <textArea id="message" name="message" class="form-control" placeholder="Type your message here..."></textArea>
                         <hr>
-                        <a class="btn btn-success btn-lg" href="#" role="button">Add</a>
+                        <input type="submit" value="Send Message" class="btn btn-success">
                     </div>
 
                 </form>
             </div>
         </div>
     </div>
-
-    </body>
-    </html>
 
 @endsection

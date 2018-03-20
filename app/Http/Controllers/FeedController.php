@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use function GuzzleHttp\Psr7\copy_to_string;
 use Illuminate\Http\Request;
 use App\Feed;
 use App\Tag;
 use App\Category;
 use Session;
 use Image;
-use Auth;
+use Storage;
 
 
 class FeedController extends Controller
@@ -24,7 +25,6 @@ class FeedController extends Controller
      */
     public function index()
     {
-        $userId = Auth::user()->id;
         $feeds = Feed::orderBy('id', 'desc') -> paginate(5);
 
         return view ('feeds.index') -> withFeeds($feeds);
@@ -55,7 +55,7 @@ class FeedController extends Controller
         //validate the data
         $this-> validate($request, array(
             'title'       => 'required|max:255',
-            'slug'        => 'required|alpha_dash|min:5|max:255|unique:feeds,slug',
+//            'slug'        => 'required|alpha_dash|min:5|max:255|unique:feeds,slug',
             'category_id' => 'required|integer',
             'body'        => 'required',
             'featured_image' => 'sometimes|image'
@@ -65,7 +65,8 @@ class FeedController extends Controller
         $feed = new Feed;
 
         $feed -> title = $request -> title;
-        $feed -> slug = $request -> slug;
+        $random_string = md5(microtime());
+        $feed -> slug = $random_string;
         $feed -> category_id = $request -> category_id;
         $feed -> body = $request -> body;
 
@@ -73,7 +74,7 @@ class FeedController extends Controller
             $image = $request->file('featured_image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
             $location = public_path('images/' .$filename);
-            Image::make($image)->resize(800, 400)->save($location);
+            Image::make($image)->save($location);
 
             $feed->image = $filename;
         }
@@ -111,13 +112,13 @@ class FeedController extends Controller
         $categories = Category::all();
         $cats = array();
         foreach($categories as $category){
-            $cats [$category->id] = $category->name;
+        $cats [$category->id] = $category->name;
         }
 
         $tags = Tag::all();
         $tags2 = array();
         foreach($tags as $tag){
-            $tags2 [$tag->id] = $tag->name;
+        $tags2 [$tag->id] = $tag->name;
         }
 
         return view('feeds.edit') -> withFeed($feed) -> withCategories($cats) -> withTags($tags2 );
@@ -133,19 +134,13 @@ class FeedController extends Controller
     public function update(Request $request, $id)
     {
         $feed = Feed::find($id);
-        if($request->input('slug') == $feed -> slug){
 
-            $this-> validate($request, array(
-                'title' => 'required|max:255',
-                'category_id' => 'required|integer',
-                'body' => 'required',
-            ));
-        }
         $this-> validate($request, array(
             'title' => 'required|max:255',
-            'slug' => 'required|alpha_dash|min:5|max:255',
+            'slug' => "required|alpha_dash|min:5|max:255|unique:feeds,slug,$id",
             'category_id' => 'required|integer',
             'body' => 'required',
+//          'featured_image' => 'image'
         ));
 
         $feed = Feed::find($id);
@@ -153,6 +148,19 @@ class FeedController extends Controller
         $feed -> slug = $request -> input ('slug');
         $feed -> category_id = $request -> input('category_id');
         $feed -> body = $request -> input('body');
+
+//        if($request -> hasFile('featured_image')){
+//            $image = $request->file('featured_image');
+//            $filename = time() . '.' . $image->getClientOriginalExtension();
+//            $location = public_path('images/' .$filename);
+//            Image::make($image)->resize(800, 400)->save($location);
+//
+//            $oldFilename = $feed -> image;
+//
+//            $feed -> image = $filename;
+//
+//            Storage::delete($oldFilename);
+//        }
 
         $feed -> save();
 

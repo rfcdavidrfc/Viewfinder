@@ -19,8 +19,8 @@ class PagesController extends Controller {
         return view('pages.feed') -> withFeeds($feeds);
     }
 
-    public function getExplore() {
-        return view('pages.explore');
+    public function getGallery() {
+        return view('pages.gallery');
     }
 
     public function getContact() {

@@ -10,6 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::middleware(['auth'])->group(function() {
+
+
+});
 Route::resource('feeds', 'FeedController');
 
 Route::get('feed/{slug}', ['as' => 'post.single', 'uses' => 'PostController@getSingle']) -> where('slug', '[\w\d\-\_]+');
@@ -18,11 +23,9 @@ Route::get('post', ['uses' => 'PostController@getIndex', 'as' => 'post.index']);
 
 
 //Authentication Routes
-Route::get('auth/login', ['as' => 'login', 'uses' =>'Auth\LoginController@showLoginForm']);
-Route::post('auth/login', 'Auth\LoginController@login');
-Route::get('auth/logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
-
-//Route::get('/login', 'PagesController@getLogin');
+//Route::get('auth/login', ['as' => 'login', 'uses' =>'Auth\LoginController@showLoginForm']);
+//Route::post('auth/login', 'Auth\LoginController@login');
+//Route::get('auth/logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
 
 
 //Registration Routes
@@ -54,7 +57,7 @@ Route::get('/register', 'PagesController@getRegister');
 Route::get('/contact', 'PagesController@getContact');
 Route::post('/contact', 'PagesController@postContact');
 
-Route::get('/explore', 'PagesController@getExplore');
+Route::get('/gallery', 'PagesController@getGallery');
 
 Route::get('/feed', 'PagesController@getFeed');
 

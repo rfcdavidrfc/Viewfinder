@@ -8,11 +8,11 @@
 
         <div class = "col-md-10">
 
-            <h1>All Posts</h1>
+            <h1>All Photos</h1>
 
         </div>
     <div class="col-md-2">
-        <a href="{{url('/feeds/create') }}" class="btn btn-lg btn-block btn-primary btn-h1-spacing">Create New Post</a>
+        <a href="{{url('/feeds/profile') }}" class="btn btn-lg btn-block btn-primary btn-h1-spacing">Add new photo</a>
      </div>
 
         <div class="col-md-12">

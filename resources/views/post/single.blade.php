@@ -9,16 +9,20 @@
 
         <div class ="col-md-8 col-md-offset-2">
 
-            <h1>{{ $feed -> title }}</h1>
+            <h1 class="text-center">{{ $feed -> title }}</h1>
 
+            <div class="row">
+            <div class="col-md-8 col-md-offset-2"  style="height: 500px">
             @if ($feed->image)
-                <img class="center-block" src="{{ asset('images/' .$feed->image) }}" height="" width="600">
+            <img class="center-block full-image-style form-spacing-top" src="{{ asset('images/' .$feed->image)}}" display="block" height="100%" width="auto">
             @endif
+            </div>
+            </div>
 
             <h5 style="font-weight: 200">{{date('M j, Y',strtotime($feed->created_at))}}</h5>
             <p>{{ $feed -> body }}</p>
             <hr>
-            <p>Categories: {{ $feed->category->name }}</p>
+            <p>Albums: {{ $feed->category->name }}</p>
         </div>
     </div>
 
@@ -72,6 +76,8 @@
         </div>
 
     </div>
+
+
 
 
 

@@ -23,14 +23,18 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/explore') }}">Explore</a>
+                    <a class="nav-link" href="{{ url('/gallery') }}">Galleries</a>
                 </li>
 
                 <li class="nav-item">
                     {{--Jack Changed This--}}
-                    <a class="nav-link" href="{{ url('feeds/create') }}">My Profile</a>
+                    <a class="nav-link" href="{{ url('') }}">My Profile</a>
                 </li>
 
+                <li class="nav-item">
+                    {{--Jack Changed This--}}
+                    <a class="nav-link" href="{{ url('contact') }}">Contact</a>
+                </li>
                 <li>
                     <form class="form-inline my-2 my-lg-0">
                         <input class="form-control mr-sm-2" type="text" placeholder="Search" id="searchbar">
@@ -56,7 +60,7 @@
                                 <li>
 
                                     <a href="{{ url('/feeds') }}">My Feeds</a>
-                                    <a href="{{ route('categories.index') }}">Categories</a>
+                                    <a href="{{ route('categories.index') }}">Albums</a>
                                     <a href="{{ route('tags.index') }}">Tags</a>
                                     <a href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

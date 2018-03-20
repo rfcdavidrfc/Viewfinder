@@ -13,19 +13,22 @@
     <div class="row">
         {!! Form::model($feed, ['route' => ['feeds.update', $feed->id], 'method' => 'PUT' ]) !!}
         <div class="col-md-8">
-            {{ Form::label('title', 'Title:') }}
+            {{ Form::label('title', 'Name:') }}
             {{ Form::text('title', null, ["class" => 'form-control input-lg' ]) }}
 
-            {{ Form::label('slug', 'Slug:', ["class" => 'form-spacing-top' ]) }}
+            {{ Form::label('slug', 'Link:', ["class" => 'form-spacing-top' ]) }}
             {{ Form::text('slug', null, ["class" => 'form-control' ]) }}
 
-            {{ Form::label('category_id', "Category:") }}
+            {{ Form::label('category_id', "Album:") }}
             {{ Form::select('category_id', $categories, null, ['class' => 'form-control']) }}
 
             {{ Form::label('tags', 'Tags:', ['class' => 'form-spacing-top']) }}
             {{ Form::select('tags[]', $tags, null, ['class' => 'form-control select2-multi', 'multiple' => 'multiple']) }}
 
-            {{ Form::label('body', 'Body:', ['class' => 'form-spacing-top']) }}
+            {{ Form::label('featured_image', 'Updated Featured Image:', ['class' => 'form-spacing-top']) }}
+            {{ Form::file('featured_image') }}
+
+            {{ Form::label('body', 'Description:', ['class' => 'form-spacing-top']) }}
             {{ Form::textArea('body', null, ['class' => 'form-control' ]) }}
         </div>
         <div class="col-md-4">

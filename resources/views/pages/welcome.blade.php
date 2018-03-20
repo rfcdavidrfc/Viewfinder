@@ -107,7 +107,7 @@
 
                 <div class="links">
                     <a href="{{ url('/feed') }}">Feed</a>
-                    <a href="{{ url('/explore') }}">Explore</a>
+                    <a href="{{ url('/gallery') }}">Gallery</a>
                     <a href="{{ url('/profile') }}">Profile</a>
                     <a href="{{ url('/contact') }}">Contacts</a>
                 </div>

@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'All Categories')
+@section('title', 'All Albums')
 
 @section('content')
 
 <div class="row">
     <div class="col-md-8">
-        <h1>Categories</h1>
+        <h1>Albums</h1>
         <table class="table">
             <thead>
             <tr>
@@ -31,11 +31,11 @@
 
             {!! Form::open(['route' => 'categories.store', 'method' => 'POST']) !!}
 
-            <h2>New Category</h2>
+            <h2>New Album</h2>
             {{ Form::label('name', 'Name:') }}
             {{ Form::text('name', null, ['class' => 'form-control']) }}
 
-            {{ Form::submit('Create New Category', ['class' => 'btn btn-primary btn-block btn-spacing']) }}
+            {{ Form::submit('Create New Album', ['class' => 'btn btn-primary btn-block btn-spacing']) }}
 
             {!! Form::close() !!}
         </div>
