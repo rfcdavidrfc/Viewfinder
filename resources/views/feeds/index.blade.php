@@ -12,7 +12,7 @@
 
         </div>
     <div class="col-md-2">
-        <a href="{{url('/feeds/profile') }}" class="btn btn-lg btn-block btn-primary btn-h1-spacing">Add new photo</a>
+        <a href="{{url('/feeds/create') }}" class="btn btn-lg btn-block btn-primary btn-h1-spacing">Add new photo</a>
      </div>
 
         <div class="col-md-12">
@@ -29,8 +29,6 @@
             <table class="table">
 
                 <thead>
-
-                <th>#</th>
                 <th>Title</th>
                 <th>Body</th>
                 <th>Created At</th>
@@ -43,7 +41,6 @@
 
                 @foreach ($feeds as $feed)
                     <tr>
-                        <th>{{ $feed->id }}</th>
                         <td>{{ $feed->title }}</td>
                         <td>{{ substr($feed->body, 0, 50) }} {{ strlen($feed->body) > 50 ? "..." : "" }}</td>
                         <td>{{date('j M, Y', strtotime($feed->created_at))}}</td>

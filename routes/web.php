@@ -63,5 +63,4 @@ Route::get('/feed', 'PagesController@getFeed');
 
 Route::get('/', 'PagesController@getIndex');
 
-
 Auth::routes();

@@ -10,6 +10,7 @@ use App\Category;
 use Session;
 use Image;
 use Storage;
+use Auth;
 
 
 class FeedController extends Controller
@@ -25,7 +26,8 @@ class FeedController extends Controller
      */
     public function index()
     {
-        $feeds = Feed::orderBy('id', 'desc') -> paginate(5);
+        $user = Auth::user()->id;
+        $feeds = Feed::where('user_id', '=', $user )->orderBy('id', 'desc') -> paginate(5);
 
         return view ('feeds.index') -> withFeeds($feeds);
     }
@@ -55,7 +57,7 @@ class FeedController extends Controller
         //validate the data
         $this-> validate($request, array(
             'title'       => 'required|max:255',
-//            'slug'        => 'required|alpha_dash|min:5|max:255|unique:feeds,slug',
+//          'slug'        => 'required|alpha_dash|min:5|max:255|unique:feeds,slug',
             'category_id' => 'required|integer',
             'body'        => 'required',
             'featured_image' => 'sometimes|image'
@@ -68,6 +70,7 @@ class FeedController extends Controller
         $random_string = md5(microtime());
         $feed -> slug = $random_string;
         $feed -> category_id = $request -> category_id;
+        $feed -> user_id = Auth::user()->id;
         $feed -> body = $request -> body;
 
         if ($request->hasFile('featured_image')){
@@ -97,7 +100,7 @@ class FeedController extends Controller
     public function show($id)
     {
         $feed = Feed::find($id);
-        return view('feeds.show') -> withFeed($feed);
+        return view('feeds.show')->withFeed($feed);
     }
 
     /**

@@ -62,6 +62,7 @@
                                     <a href="{{ url('/feeds') }}">My Feeds</a>
                                     <a href="{{ route('categories.index') }}">Albums</a>
                                     <a href="{{ route('tags.index') }}">Tags</a>
+                                    <a href="{{ route('cart.index') }}">Cart</a>
                                     <a href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

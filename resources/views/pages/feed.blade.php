@@ -8,7 +8,7 @@
                 <div class="col-md-12">
                     <div>
                         <p class="lead">
-                            <a class="btn btn-primary btn-lg pull-right" href="/feeds/create" role="button">Upload a photo</a>
+                            <a class="btn btn-primary btn-lg pull-right" href="/feeds/create" role="button">Upload a Photo</a>
                         </p>
                     </div>
                 </div>
