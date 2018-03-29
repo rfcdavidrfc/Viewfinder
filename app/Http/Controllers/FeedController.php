@@ -57,7 +57,6 @@ class FeedController extends Controller
         //validate the data
         $this-> validate($request, array(
             'title'       => 'required|max:255',
-//          'slug'        => 'required|alpha_dash|min:5|max:255|unique:feeds,slug',
             'category_id' => 'required|integer',
             'body'        => 'required',
             'featured_image' => 'sometimes|image'
@@ -140,7 +139,6 @@ class FeedController extends Controller
 
         $this-> validate($request, array(
             'title' => 'required|max:255',
-            'slug' => "required|alpha_dash|min:5|max:255|unique:feeds,slug,$id",
             'category_id' => 'required|integer',
             'body' => 'required',
 //          'featured_image' => 'image'
@@ -148,7 +146,6 @@ class FeedController extends Controller
 
         $feed = Feed::find($id);
         $feed -> title = $request -> input ('title');
-        $feed -> slug = $request -> input ('slug');
         $feed -> category_id = $request -> input('category_id');
         $feed -> body = $request -> input('body');
 

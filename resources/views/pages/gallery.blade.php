@@ -1,33 +1,28 @@
 @extends('layouts.app')
 @section('content')
 
-    <html>
-    <head>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
 
+            @foreach($categories as $category)
 
+                    <div class="col-sm-6 col-md-4">
+                        <a href="{{ url ('category/'.$category->id) }}">
+                        <div class="thumbnail">
+                            <div class="caption">
+                                <h3 class="title-style">{{ $category -> name }}</h3>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+            @endforeach
 
-        <title>Gallery</title>
-
-
-        <style>
-            html, body {
-
-
-        </style>
-    </head>
-    <body>
-
-    <div class = "container">
-        <div class="row">
-            <div class="col-md-12">
-                    <h1>Gallery</h1>
-                    <p>jkasnfkanbsfkjasfkjbasljhfbakjbgkj`bflkjsdlfjhbsdk;fbljadnfljhbads;fblj;ndfljhbfjbsalkfj
-                    ihdfbjlfabljadbf;jbdlfkjbadsljhfbuhofbsajbflhbsdfjlhbdkfjbdlsjhbfk;abdf;lbfjabfljhbskfbsjfbkabf</p>
-                </div>
+            <div class="text-center">
+                {!! $categories->links(); !!}
             </div>
-        </div>
 
-    </body>
-    </html>
+
+        </div>
+    </div>
 
 @endsection

@@ -108,8 +108,8 @@
                 <div class="links">
                     <a href="{{ url('/feed') }}">Feed</a>
                     <a href="{{ url('/gallery') }}">Gallery</a>
-                    <a href="{{ url('/profile') }}">Profile</a>
-                    <a href="{{ url('/contact') }}">Contacts</a>
+                    <a href="{{ url('/myProfile') }}">Profile</a>
+                    <a href="{{ url('/contact') }}">Contact</a>
                 </div>
             </div>
         </div>

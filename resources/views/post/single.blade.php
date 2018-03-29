@@ -12,9 +12,9 @@
             <h1 class="text-center">{{ $feed -> title }}</h1>
 
             <div class="row">
-            <div class="col-md-8 col-md-offset-2"  style="height: 500px">
+            <div class="col-md-8 col-md-offset-2">
             @if ($feed->image)
-            <img class="center-block full-image-style form-spacing-top" src="{{ asset('images/' .$feed->image)}}" display="block" height="100%" width="auto">
+                    <a href="{{ url ('feed/'.$feed->slug) }}"> <img class="image-style form-spacing-top" src="{{ asset('images/' .$feed->image) }}" height="auto" width="500"> </a>
             @endif
             </div>
             </div>

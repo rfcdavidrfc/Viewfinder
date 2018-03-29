@@ -19,6 +19,10 @@ Route::resource('feeds', 'FeedController');
 
 Route::get('feed/{slug}', ['as' => 'post.single', 'uses' => 'PostController@getSingle']) -> where('slug', '[\w\d\-\_]+');
 
+Route::get('category/{id}', ['as' => 'categories.single', 'uses' => 'CategoryController@getSingle']) -> where('id', '[\w\d\-\_]+');
+
+Route::get('user/{id}', ['as' => 'pages.userProfile', 'uses' => 'PagesController@getUserProfile']) -> where('id', '[\w\d\-\_]+');
+
 Route::get('post', ['uses' => 'PostController@getIndex', 'as' => 'post.index']);
 
 
@@ -59,8 +63,13 @@ Route::post('/contact', 'PagesController@postContact');
 
 Route::get('/gallery', 'PagesController@getGallery');
 
+Route::get('/myProfile', 'PagesController@getMyProfile');
+
 Route::get('/feed', 'PagesController@getFeed');
 
 Route::get('/', 'PagesController@getIndex');
+
+Route::get('search', ['as' => 'search', 'uses' => 'SearchController@index']);
+Route::post('search', ['as' => 'search', 'uses' => 'SearchController@index']);
 
 Auth::routes();

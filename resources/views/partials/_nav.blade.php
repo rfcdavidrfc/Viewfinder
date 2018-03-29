@@ -27,26 +27,32 @@
                 </li>
 
                 <li class="nav-item">
-                    {{--Jack Changed This--}}
-                    <a class="nav-link" href="{{ url('') }}">My Profile</a>
+                    <a class="nav-link" href="{{ url('/myProfile') }}">My Profile</a>
                 </li>
 
                 <li class="nav-item">
-                    {{--Jack Changed This--}}
                     <a class="nav-link" href="{{ url('contact') }}">Contact</a>
                 </li>
-                <li>
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="text" placeholder="Search" id="searchbar">
-                        <button class="btn btn-outline-success my-2 my-sm-0 searchbar" type="submit">Search</button>
-                    </form>
-                </li>
             </ul>
+
+            <div class="col-md-3" style="padding-top: 0.5%">
+            {!! Form::open(['route' => 'search'], array('class' => 'navbar-form navbar-left')) !!}
+                <div class="input-group">
+                    <input class="form-control" name="query" placeholder="search..." type="text">
+                    <span class="input-group-btn">
+                        {!! Form::submit('Search',
+                                array('class'=>'btn btn-primary')) !!}
+                                 </span>
+                </div>
+            {!! Form::close() !!}
+            </div>
+
 
 
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
+
                 @guest
                     <li><a href="{{ route('login') }}">Login</a></li>
                     <li><a href="{{ route('register') }}">Register</a></li>
@@ -62,7 +68,6 @@
                                     <a href="{{ url('/feeds') }}">My Feeds</a>
                                     <a href="{{ route('categories.index') }}">Albums</a>
                                     <a href="{{ route('tags.index') }}">Tags</a>
-                                    <a href="{{ route('cart.index') }}">Cart</a>
                                     <a href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

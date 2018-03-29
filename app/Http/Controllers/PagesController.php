@@ -1,13 +1,20 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Category;
 use Illuminate\Http\Request;
 
 use App\Requests;
 use App\Feed;
+use Auth;
+use App\User;
 use Mail;
 
 class PagesController extends Controller {
+
+    public function __construct() {
+        $this->middleware('auth')->only('getMyProfile');
+    }
 
 
    public function getIndex(){
@@ -15,16 +22,28 @@ class PagesController extends Controller {
    }
 
     public function getFeed() {
-        $feeds = Feed::orderBy('created_at', 'desc') -> limit(4) -> get();
-        return view('pages.feed') -> withFeeds($feeds);
+        $feeds = Feed::orderBy('created_at', 'desc') -> paginate(5);
+        $users = User::inRandomOrder()->limit(10)->get();
+        return view('pages.feed') -> withFeeds($feeds)->withUsers($users);
     }
 
     public function getGallery() {
-        return view('pages.gallery');
+        $categories = Category::orderBy('name', 'asc')->paginate(20);
+        $feeds = Feed::inRandomOrder()->limit(1)->get();
+        return view('pages.gallery')->withCategories($categories)->withFeeds($feeds);
     }
 
     public function getContact() {
         return view('pages.contact');
+    }
+
+
+    public function getMyProfile() {
+        $user = Auth::user()->id;
+        $feeds = Feed::where('user_id', '=', $user )->orderBy('id', 'desc') -> paginate(5);
+        $users = Auth::user();
+
+        return view('pages.myProfile')->withFeeds($feeds)->withUser($users);
     }
 
     public function postContact(Request $request) {
@@ -49,6 +68,13 @@ class PagesController extends Controller {
         });
 
         return redirect('/feed')->with('success', 'Thank you for contacting us!');
+    }
+
+    public function getUserProfile($id) {
+
+        $feeds = Feed::where('user_id', $id) -> paginate(10);
+        return view('pages.userProfile') -> withFeeds($feeds);
+
     }
 
     public function getLogin() {

@@ -22,9 +22,6 @@
                 {{Form::label('title', 'Name:')}}
                 {{Form::text('title', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255'))}}
 
-                {{--{{ Form::label('slug', 'Link:') }}--}}
-                {{--{{ Form::text('slug', null, array('class' => 'form-control', 'required' => '', 'minlength' => '5', 'maxlength' => '255')) }}--}}
-
                 {{ Form::label('category_id', 'Album:') }}
                 <select class="form-control" name="category_id">
 
@@ -65,20 +62,5 @@
     <script type="text/javascript">
         $('.select2-multi').select2();
     </script>
-
-    {{--<script>--}}
-        {{--/*Creating an Accordion*/--}}
-        {{--$(document).ready(function() {--}}
-            {{--$(".container").click(function() {--}}
-                {{--this.classList.toggle("active");--}}
-                {{--var row = this.nextElementSibling;--}}
-                {{--if (row.style.display === "block") {--}}
-                    {{--row.style.display = "none";--}}
-                {{--} else {--}}
-                    {{--row.style.display = "block";--}}
-                {{--}--}}
-            {{--});--}}
-        {{--});--}}
-    {{--</script>--}}
 
 @endsection

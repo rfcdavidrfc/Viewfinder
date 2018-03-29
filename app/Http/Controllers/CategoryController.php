@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Category;
+use App\Feed;
 
 use Session;
 
@@ -12,7 +13,7 @@ class CategoryController extends Controller
 {
 
     public function __construct(){
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => ['getSingle']]);
     }
 
     /**
@@ -92,5 +93,12 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getSingle($id)
+    {
+        $feeds = Feed::where('category_id', $id) -> get();
+
+        return view('categories.single') -> withFeeds($feeds);
     }
 }
