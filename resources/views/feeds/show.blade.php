@@ -5,7 +5,7 @@
 @section('content')
 
     <div class="row">
-        <div class="col-md-8" style="height: 500px">
+        <div class="col-md-8">
 
             <img src="{{ asset('images/'.$feed -> image) }}" display="block" height="100%" width="100%"/>
 
@@ -15,7 +15,7 @@
 
             <div class="tags">
             @foreach($feed -> tags as $tag)
-<span class="label label-default">{{ $tag -> name }}</span>
+                <span class="label label-default">{{ $tag -> name }}</span>
             @endforeach
             </div>
 
@@ -53,7 +53,7 @@
             <div class="well">
                 <dl class="dl-horizontal">
                     <label>Url:</label>
-                    <p><a href="{{ url('feed/'.$feed -> slug) }}">{{ url('feed/'.$feed -> slug) }}</a></p>
+                    <p style="word-wrap:break-word;"><a href="{{ url('feed/'.$feed -> slug) }}">{{ url('feed/'.$feed -> slug) }}</a></p>
                 </dl>
 
                 <dl class="dl-horizontal">
