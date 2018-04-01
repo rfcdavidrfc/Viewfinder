@@ -6,19 +6,23 @@
     <script src="https://donorbox.org/install-popup-button.js" type="text/javascript" defer></script>
 
  <div class="row">
-                <div class="col-md-6 col-md-offset-3">
+                <div class="col-md-9">
 
                     @foreach($feeds as $feed)
 
                         <div class="thumbnail">
                             @if ($feed->image)
-                                <a href="{{ url ('feed/'.$feed->slug) }}"> <img class="image-style form-spacing-top" src="{{ asset('images/' .$feed->image) }}" height="auto" width="500"> </a>
+                                <a href="{{ url ('feed/'.$feed->slug) }}"> <img class="image-style form-spacing-top" src="{{ asset('images/' .$feed->image) }}" height="auto" width="700"> </a>
                             @endif
+                            <h1>User: {{ $feed -> name }}</h1>
                             <div class="caption">
                                 <h3 class="title-style">{{ $feed -> title }}</h3>
                                 <p>Photo ID: {{ $feed -> id }}</p>
                                 <p class="form-spacing-top">{{ strip_tags($feed -> body), 0, 100 }} {{ strlen($feed -> body) > 300 ? "..." : "" }}</p>
-                                <p><a href="https://donorbox.org/viewfinder" class="btn btn-primary dbox-donation-button" role="button">Donate</a></p>
+                                <p><a href="https://donorbox.org/viewfinder" class="btn btn-primary dbox-donation-button" role="button">Buy</a>
+                                    <a href = "{{ url ('feed/'.$feed->slug) }}" class = "btn btn-primary" role = "button">Comment</a>
+                                </p>
+
                             </div>
                         </div>
 
