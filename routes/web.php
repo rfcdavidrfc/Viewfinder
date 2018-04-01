@@ -69,6 +69,8 @@ Route::get('/feed', 'PagesController@getFeed');
 
 Route::get('/', 'PagesController@getIndex');
 
+Route::get('/about', 'PagesController@getAbout');
+
 Route::get('search', ['as' => 'search', 'uses' => 'SearchController@index']);
 Route::post('search', ['as' => 'search', 'uses' => 'SearchController@index']);
 
