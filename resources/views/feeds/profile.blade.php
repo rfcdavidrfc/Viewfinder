@@ -39,13 +39,13 @@
 
                 </select>
 
-                {{ Form::label('featured_image', 'Upload Image',['class' => 'form-spacing-top']) }}
+                {{ Form::label('featured_image', 'Upload Image',['class' => 'form-spacing-top ']) }}
                 {{ Form::file('featured_image') }}
 
                 {{Form::label('body', 'Description:' ,['class' => 'form-spacing-top'])}}
                 {{Form::textarea('body', null, array('class' => 'form-control', 'required' => ''))}}
 
-                {{Form::submit('Create Post', array ('class' => 'btn btn-success btn-lg btn-block', 'style' => 'margin-top: 20px;'))}}
+                {{Form::submit('Upload Photo', array ('class' => 'btn btn-success btn-lg btn-block', 'style' => 'margin-top: 20px;'))}}
 
                 {!! Form::close() !!}
             </div>
