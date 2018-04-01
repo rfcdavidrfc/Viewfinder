@@ -29,11 +29,14 @@
     <div class="col-md-3">
         <div class="well">
 
-            {!! Form::open(['route' => 'categories.store', 'method' => 'POST']) !!}
+            {!! Form::open(['route' => 'categories.store', 'method' => 'POST', 'files' => 'true']) !!}
 
             <h2>New Album</h2>
             {{ Form::label('name', 'Name:') }}
             {{ Form::text('name', null, ['class' => 'form-control']) }}
+
+            {{ Form::label('category_image', 'Upload Image',['class' => 'form-spacing-top ']) }}
+            {{ Form::file('category_image') }}
 
             {{ Form::submit('Create New Album', ['class' => 'btn btn-primary btn-block btn-spacing']) }}
 
