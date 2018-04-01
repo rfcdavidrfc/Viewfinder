@@ -61,7 +61,11 @@
 
                     <div class="col-md-6">
                         {{ Form::label('email', "Email:") }}
-                        {{ Form::text('email', null, ['class' => 'form-control']) }}
+                        @guest
+                            {{ Form::text('email', null, ['class' => 'form-control']) }}
+                        @else
+                            {{ Form::text('email', Auth::user()->email, ['class' => 'form-control']) }}
+                        @endguest
                     </div>
 
                     <div class="col-md-12">
