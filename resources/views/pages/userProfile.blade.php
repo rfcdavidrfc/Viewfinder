@@ -18,7 +18,7 @@
                     <h3 class="title-style">{{ $feed -> title }}</h3>
                     <p>Photo ID: {{ $feed->id }}</p>
                     <p class="form-spacing-top">{{ strip_tags($feed -> body), 0, 100 }} {{ strlen($feed -> body) > 300 ? "..." : "" }}</p>
-                    <p><a href="https://donorbox.org/viewfinder" class="btn btn-primary dbox-donation-button" role="button">Donate</a></p>
+                    <p><a href="https://donorbox.org/viewfinder" class="btn btn-primary dbox-donation-button" role="button">Buy</a></p>
                 </div>
             </div>
 

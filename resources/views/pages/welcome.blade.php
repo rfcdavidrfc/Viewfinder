@@ -110,6 +110,7 @@
                     <a href="{{ url('/gallery') }}">Gallery</a>
                     <a href="{{ url('/myProfile') }}">Profile</a>
                     <a href="{{ url('/contact') }}">Contact</a>
+                    <a href="{{ url('/about') }}">About</a>
                 </div>
             </div>
         </div>
