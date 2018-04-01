@@ -68,3 +68,28 @@
     max-height: 100%;
     max-width: 100%;
 }
+
+.navbar-header .navbar-brand{
+    display: flex;
+    align-items: center;
+    padding: 0px;
+    margin-top: 4px;
+}
+
+.footer{
+    bottom: 0%;
+    text-align: center;
+    align-content: center;
+    position: relative;
+}
+
+.jumbotron {
+    margin-bottom: 0px;
+    margin-top: 30px;
+    background-image: url(/img/about.png);
+    background-position: 0% 25%;
+    background-size: cover;
+    color: white;
+    background-repeat: no-repeat;
+
+}
