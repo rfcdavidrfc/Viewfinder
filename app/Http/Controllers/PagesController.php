@@ -29,8 +29,7 @@ class PagesController extends Controller {
 
     public function getGallery() {
         $categories = Category::orderBy('name', 'asc')->paginate(20);
-        $feeds = Feed::inRandomOrder()->limit(1)->get();
-        return view('pages.gallery')->withCategories($categories)->withFeeds($feeds);
+        return view('pages.gallery')->withCategories($categories);
     }
 
     public function getContact() {
@@ -44,6 +43,10 @@ class PagesController extends Controller {
         $users = Auth::user();
 
         return view('pages.myProfile')->withFeeds($feeds)->withUser($users);
+    }
+
+    public function getAbout(){
+       return view('pages.about');
     }
 
     public function postContact(Request $request) {

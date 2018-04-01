@@ -59,7 +59,7 @@ class FeedController extends Controller
             'title'       => 'required|max:255',
             'category_id' => 'required|integer',
             'body'        => 'required',
-            'featured_image' => 'sometimes|image'
+            'featured_image' => 'required|image|max:1999|mimes:jpeg, jpg, png'
     ));
 
         //store in the database

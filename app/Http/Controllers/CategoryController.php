@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Category;
 use App\Feed;
+use Image;
 
 use Session;
 
@@ -37,12 +38,23 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $this -> validate ($request, array(
-            'name' => 'required|max:255'
+            'name' => 'required|max:255',
+            'category_image' => 'required|image|max:1999|mimes:jpeg, jpg, png'
         ));
 
         $category = new Category;
 
         $category -> name = $request -> name;
+
+        if ($request->hasFile('category_image')){
+            $image = $request->file('category_image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('images/' .$filename);
+            Image::make($image)->save($location);
+
+            $category->image = $filename;
+        }
+
         $category -> save();
 
         Session::flash('success', 'New category has been created');
