@@ -2,23 +2,22 @@
     <div class="container">
         <div class="navbar-header">
 
-            <!-- Collapsed Hamburger -->
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse" aria-expanded="false">
-                <span class="sr-only">Toggle Navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
 
-            <!-- Branding Image -->
-            <a class="navbar-brand" href="{{ url('/') }}">
-                Viewfinder
-            </a>
-        </div>
+
+            {{--<!-- Branding Image -->--}}
+            {{--<a class="navbar-brand" href="{{ url('/') }}">--}}
+                {{--<img alt="Brand" src="img/logo_brand.png">--}}
+            {{--</a>--}}
+        {{--</div>--}}
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
+                <li>
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    <img alt="Viewfinder" src="img/logo_brand.png">
+                </a>
+                </li>
                 <li class="nav-item"><a href="{{ url('/feed') }}">Feed</a>
                 </li>
 
@@ -32,6 +31,10 @@
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('contact') }}">Contact</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('/about') }}">About</a>
                 </li>
             </ul>
 
