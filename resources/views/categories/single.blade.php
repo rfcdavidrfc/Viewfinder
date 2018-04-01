@@ -33,7 +33,7 @@
                                         <p>{!! $feed->body !!}</p>
                                     </div>
                                     <div class="modal-footer">
-                                        <p><a href="https://donorbox.org/viewfinder" class="btn btn-primary dbox-donation-button" role="button">Donate</a></p>
+                                        <p><a href="https://donorbox.org/viewfinder" class="btn btn-primary dbox-donation-button" role="button">Buy</a></p>
                                     </div>
                                 </div>
 
