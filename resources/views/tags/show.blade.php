@@ -2,6 +2,7 @@
 
 @section('title', "| $tag -> name Tag")
 
+{{--A page that shows each tag individually. This shows what posts have used this tag.--}}
 @section('content')
 
     <div class="row">
@@ -9,9 +10,11 @@
             <h1>{{ $tag -> name }} Tag <small>{{ $tag -> feeds() -> count() }} Posts</small></h1>
         </div>
         <div class="col-md-2">
+            {{--Button to edit tags.--}}
             <a href="{{ route('tags.edit', $tag -> id) }}" class="btn btn-primary pull-right btn-block" style="margin-top: 20px;">Edit</a>
         </div>
         <div class="col-md-2">
+            {{--Button to delete tags.--}}
             {{ Form::open(['route' => ['tags.destroy', $tag -> id], 'method' => 'DELETE']) }}
             {{ Form::submit('Delete', ['class' => 'btn btn-danger btn-block',  'style' => 'margin-top: 20px;']) }}
             {{ Form::close() }}
@@ -22,6 +25,7 @@
 
         <div class="col-md-12">
 
+            {{--Table that stores all the posts the tag is linked with.--}}
             <table class="table">
                 <thead>
                 <tr>
@@ -41,6 +45,7 @@
                                 <span class="label label-default">{{ $tag -> name }}</span>
                         @endforeach
                         </td>
+                        {{--User can click to view these posts from here.--}}
                         <td><a href="{{ route('feeds.show', $feed -> id) }}" class="btn btn-default btn-xs">View</a></td>
                     </tr>
                 @endforeach

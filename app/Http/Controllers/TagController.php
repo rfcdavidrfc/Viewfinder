@@ -9,7 +9,7 @@ Use Session;
 
 class TagController extends Controller
 {
-
+//    Add middleware to enable authentication.
     public function __construct(){
         $this->middleware('auth');
     }
@@ -20,6 +20,7 @@ class TagController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //Returns all the tags in the tag database and returns it to the view tags.index
     public function index()
     {
         $tags = Tag::all();
@@ -33,6 +34,7 @@ class TagController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    //    This stores the name for the the tags
     public function store(Request $request)
     {
         $this -> validate($request, array('name' => 'required|max:255'));
@@ -51,6 +53,7 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+//    This shows the tags and what they are linked to in the tags show page
     public function show($id)
     {
         $tag = Tag::find($id);
@@ -63,6 +66,7 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+//    This allows users to edit tags.
     public function edit($id)
     {
         $tag = Tag::find($id);
@@ -78,6 +82,7 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+//    This allows users to update tags
     public function update(Request $request, $id)
     {
         $tag = Tag::find($id);
@@ -96,6 +101,7 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+//    This allows me as an adimin to delete these tags directly from the tags database.
     public function destroy($id)
     {
         $tag = Tag::find($id);

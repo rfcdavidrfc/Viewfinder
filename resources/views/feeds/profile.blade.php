@@ -4,7 +4,7 @@
 @section('title', 'Create Post')
 
 @section('stylesheets')
-
+{{--Upload a new photo--}}
     {!! Html::style('css/parsley.css') !!}
     {!! Html::style('css/select2.min.css') !!}
 
@@ -17,7 +17,7 @@
             <div class="col-md-8 col-md-offset-2">
                 <h1>Upload your photo</h1>
                 <hr>
-
+{{--Takes in the title of the photo, album/category, tags, photo itself and description --}}
                 {!! Form::open(array('route' => 'feeds.store', 'data-parsley-validate' => '', 'files' => 'true')) !!}
                 {{Form::label('title', 'Name:')}}
                 {{Form::text('title', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255'))}}
@@ -50,10 +50,10 @@
                 {!! Form::close() !!}
             </div>
         </div>
-    </div> {{--End of container--}}
+    </div>
 
 @endsection
-
+{{--My scripts--}}
 @section('scripts')
 
     {!! Html::script('js/parsley.min.js') !!}

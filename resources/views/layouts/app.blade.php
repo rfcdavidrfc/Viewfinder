@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{{--Adds the head, navbar, success and failure messages and javascript to each of the views in my website--}}
 <html lang="{{ app()->getLocale() }}">
 <head>
 @include('partials._head')

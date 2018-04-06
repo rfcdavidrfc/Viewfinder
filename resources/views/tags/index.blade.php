@@ -2,10 +2,12 @@
 
 @section('title', 'Tags')
 
+{{--Shows all the tags that are currently created within a table.--}}
 @section('content')
 
     <div class="row">
         <div class="col-md-8">
+            {{--Table storing all the tags that have been created.--}}
             <h1>Tags</h1>
             <table class="table">
                 <thead>
@@ -19,6 +21,7 @@
                 @foreach($tags as $tag)
                     <tr>
                         <th>{{ $tag->id }}</th>
+                        {{--When you click on the tag link it bring you to a individual page for that tag.--}}
                         <td><a href="{{ route('tags.show', $tag -> id) }}">{{ $tag->name }}</a></td>
                     </tr>
                 @endforeach
@@ -26,6 +29,7 @@
             </table>
         </div>
 
+        {{--A well made to allow users to create new tags that can be used.--}}
         <div class="col-md-3">
             <div class="well">
 

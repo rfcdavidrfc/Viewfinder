@@ -2,22 +2,16 @@
     <div class="container">
         <div class="navbar-header">
 
-
-
-            {{--<!-- Branding Image -->--}}
-            {{--<a class="navbar-brand" href="{{ url('/') }}">--}}
-                {{--<img alt="Brand" src="img/logo_brand.png">--}}
-            {{--</a>--}}
-        {{--</div>--}}
-
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
                 <li>
+                    {{--Viewfinder Brand logo. Used in navbar--}}
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img alt="Viewfinder" src="img/logo_brand.png">
                 </a>
                 </li>
+                {{--Each page to be navigated in the menu bar.--}}
                 <li class="nav-item"><a href="{{ url('/feed') }}">Feed</a>
                 </li>
 
@@ -38,6 +32,7 @@
                 </li>
             </ul>
 
+            {{--Search bar to search the site for particular post with a specific word --}}
             <div class="col-md-3" style="padding-top: 0.5%">
             {!! Form::open(['route' => 'search'], array('class' => 'navbar-form navbar-left')) !!}
                 <div class="input-group">
@@ -65,6 +60,7 @@
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 
+                            {{--Dropdown menu with posts only users logged in can access. The user can only see their posts within this to make sure they can only edit or update their own posts.--}}
                             <ul class="dropdown-menu">
                                 <li>
 

@@ -20,6 +20,8 @@ class RegisterController extends Controller
     |
     */
 
+    //    Built in Laravel Controller
+
     use RegistersUsers;
 
     /**

@@ -10,11 +10,13 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//Middleware for authentication
 Route::middleware(['auth'])->group(function() {
 
 
 });
+
+
 Route::resource('feeds', 'FeedController');
 
 Route::get('feed/{slug}', ['as' => 'post.single', 'uses' => 'PostController@getSingle']) -> where('slug', '[\w\d\-\_]+');
@@ -55,8 +57,8 @@ Route::put('comments/{id}', ['uses' => 'CommentsController@update', 'as' => 'com
 Route::delete('comments/{id}', ['uses' => 'CommentsController@destroy', 'as' => 'comments.destroy']);
 Route::get('comments/{id}/delete', ['uses' => 'CommentsController@delete', 'as' => 'comments.delete']);
 
+//Page Routes
 Route::get('/register', 'PagesController@getRegister');
-
 
 Route::get('/contact', 'PagesController@getContact');
 Route::post('/contact', 'PagesController@postContact');
@@ -71,7 +73,9 @@ Route::get('/', 'PagesController@getIndex');
 
 Route::get('/about', 'PagesController@getAbout');
 
+//Searchbar Routes
 Route::get('search', ['as' => 'search', 'uses' => 'SearchController@index']);
 Route::post('search', ['as' => 'search', 'uses' => 'SearchController@index']);
 
+//Authentication Routes
 Auth::routes();

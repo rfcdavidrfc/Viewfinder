@@ -16,6 +16,7 @@ use Auth;
 class FeedController extends Controller
 {
 
+//    Add middleware to enable authentication.
     public function __construct(){
         $this->middleware('auth');
     }
@@ -24,6 +25,7 @@ class FeedController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+//    Retrieves posts that have been made by a user and posts them to the feeds.index for them to view.
     public function index()
     {
         $user = Auth::user()->id;
@@ -37,6 +39,7 @@ class FeedController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+//    Allows users to create both categories/albums and tags.
     public function create()
     {
         $categories = Category::all();
@@ -52,6 +55,7 @@ class FeedController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+//    This stores the title, category_id, the body and the photo of the posts being made.
     public function store(Request $request)
     {
         //validate the data
@@ -96,6 +100,7 @@ class FeedController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+//    This pulls the feeds from the database to show them on the feeds show page.
     public function show($id)
     {
         $feed = Feed::find($id);
@@ -108,6 +113,7 @@ class FeedController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+//    This allows users to edit their posts.
     public function edit($id)
     {
         $feed = Feed::find($id);
@@ -133,6 +139,7 @@ class FeedController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+//    This allows users to update each post.
     public function update(Request $request, $id)
     {
         $feed = Feed::find($id);
@@ -141,26 +148,12 @@ class FeedController extends Controller
             'title' => 'required|max:255',
             'category_id' => 'required|integer',
             'body' => 'required',
-//          'featured_image' => 'image'
         ));
 
         $feed = Feed::find($id);
         $feed -> title = $request -> input ('title');
         $feed -> category_id = $request -> input('category_id');
         $feed -> body = $request -> input('body');
-
-//        if($request -> hasFile('featured_image')){
-//            $image = $request->file('featured_image');
-//            $filename = time() . '.' . $image->getClientOriginalExtension();
-//            $location = public_path('images/' .$filename);
-//            Image::make($image)->resize(800, 400)->save($location);
-//
-//            $oldFilename = $feed -> image;
-//
-//            $feed -> image = $filename;
-//
-//            Storage::delete($oldFilename);
-//        }
 
         $feed -> save();
 
@@ -181,6 +174,7 @@ class FeedController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+//    This allows me to delete a post from the database directly.
     public function destroy($id)
     {
         $feed = Feed::find($id);

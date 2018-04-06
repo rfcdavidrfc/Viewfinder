@@ -1,4 +1,5 @@
 @extends('layouts.app')
+{{--Laravel built in class for user login. --}}
 
 @section('content')
 <div class="container">

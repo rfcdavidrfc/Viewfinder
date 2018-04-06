@@ -18,6 +18,8 @@ class LoginController extends Controller
     |
     */
 
+    //    Built in Laravel Controller
+
     use AuthenticatesUsers;
 
     /**

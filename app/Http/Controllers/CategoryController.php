@@ -3,25 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Category;
 use App\Feed;
 use Image;
-
 use Session;
 
 class CategoryController extends Controller
 {
-
+//constructing my middleware. This makes authentication necessary.
     public function __construct(){
         $this->middleware('auth', ['except' => ['getSingle']]);
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+//Returns all the categories/albums in the category database and returns it to the view catgories.index
     public function index()
     {
         $categories = Category::all();
@@ -29,12 +23,7 @@ class CategoryController extends Controller
         return view('categories.index')->withCategories($categories);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+//    This stores the name and an image for the the categories/albums
     public function store(Request $request)
     {
         $this -> validate ($request, array(
@@ -42,6 +31,7 @@ class CategoryController extends Controller
             'category_image' => 'required|image|max:1999|mimes:jpeg, jpg, png'
         ));
 
+//        Saves the image to show in my gallery page.
         $category = new Category;
 
         $category -> name = $request -> name;
@@ -107,6 +97,7 @@ class CategoryController extends Controller
         //
     }
 
+//    This get categories/albums from the database then returns it to categories.single
     public function getSingle($id)
     {
         $feeds = Feed::where('category_id', $id) -> get();

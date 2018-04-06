@@ -9,7 +9,7 @@ use Session;
 
 class CommentsController extends Controller
 {
-
+//you must have authentication to comment.
     public function __construct(){
         $this -> middleware('auth');
     }
@@ -20,6 +20,7 @@ class CommentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+//    This stores the name of the user, their email and the comment itself to the database
     public function store(Request $request, $feed_id)
     {
         $this -> validate($request, array(
@@ -61,6 +62,7 @@ class CommentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+//    This allows the comment stored to be edited.
     public function edit($id)
     {
         $comment = comment::find($id);
@@ -74,6 +76,7 @@ class CommentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+//    This allows a comment to also be updated.
     public function update(Request $request, $id)
     {
         $comment = Comment::find($id);
@@ -88,6 +91,7 @@ class CommentsController extends Controller
         return redirect()->route('feeds.show', $comment -> feed -> id);
     }
 
+//    This allows users to delete comments off their photos.
     public function delete($id)
     {
         $comment = Comment::find($id);
@@ -101,6 +105,7 @@ class CommentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+//    This also allows me as an admin to go and remove this directly from the database. This allows me to control and monitor the comments section.
     public function destroy($id)
     {
         $comment = Comment::find($id);

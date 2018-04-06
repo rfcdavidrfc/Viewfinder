@@ -18,6 +18,8 @@ class ForgotPasswordController extends Controller
     |
     */
 
+//    Built in Laravel Controller
+
     use SendsPasswordResetEmails;
 
     /**

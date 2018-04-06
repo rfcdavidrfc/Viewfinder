@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="en">
     <head>
+
+        {{--All my plugins, scripts and linked stylesheets--}}
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,7 +23,7 @@
         <style>
             html, body {
 
-
+                /*Background photo*/
                 background: url(/img/test3.png) no-repeat center center fixed;
                 -webkit-background-size: cover;
                 -moz-background-size: cover;
@@ -81,7 +83,8 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-
+{{--Login link top righthand corner.--}}
+            {{--If you are logged in then it will change to logout. If not then it allows users to either register or login.--}}
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -105,6 +108,7 @@
                     Viewfinder
                 </div>
 
+                {{--My welcome page quick menubar.--}}
                 <div class="links">
                     <a href="{{ url('/feed') }}">Feed</a>
                     <a href="{{ url('/gallery') }}">Gallery</a>

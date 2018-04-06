@@ -4,6 +4,7 @@
 
 @section('stylesheets')
 
+    {{--View to edit your feeds--}}
     {!! Html::style('css/select2.min.css') !!}
 
 @endsection
@@ -11,6 +12,7 @@
 @section('content')
 
     <div class="row">
+        {{--This form allows users to update their posts--}}
         {!! Form::model($feed, ['route' => ['feeds.update', $feed->id], 'method' => 'PUT' ]) !!}
         <div class="col-md-8">
             {{ Form::label('title', 'Name:') }}
@@ -29,9 +31,11 @@
             {{ Form::textArea('body', null, ['class' => 'form-control' ]) }}
         </div>
         <div class="col-md-4">
+
             <div class="well">
 
                 <dl class="dl-horizontal">
+                    {{--Pulls in the time created and the time it was updated from the database--}}
                     <dt>Created At:</dt>
                     <dd>{{date('j M, Y H:i', strtotime($feed->created_at))}}</dd>
                 </dl>
@@ -44,7 +48,7 @@
                 <hr>
 
                 <div class="row">
-
+                    {{--This well contains buttons to allow users to save the updated feed or cancel the changes made.--}}
                     <div class="col-sm-6">
                         {!! Html::linkRoute('feeds.show', 'Cancel', array($feed->id), array('class' => 'btn btn-danger btn-block')) !!}
 
@@ -64,6 +68,7 @@
 
 @endsection
 
+{{--My Scripts--}}
 @section('scripts')
 
     {!! Html::script('js/select2.min.js') !!}

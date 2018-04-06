@@ -18,6 +18,8 @@ class ResetPasswordController extends Controller
     |
     */
 
+    //    Built in Laravel Controller
+
     use ResetsPasswords;
 
     /**

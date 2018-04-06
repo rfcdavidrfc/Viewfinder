@@ -8,6 +8,7 @@ use App\User;
 
 class SearchController extends Controller
 {
+//    This allows users to search the site to find particular posts.
     public function index(Request $request)
     {
         $query = $request->get('query');
